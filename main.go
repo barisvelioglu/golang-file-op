@@ -65,9 +65,9 @@ func main() {
 		ReplacementHeaders: "",
 	})
 
-	p := filepath.FromSlash(csvConnection1.FileDirectory)
-	fileSearchPattern := "(" + strings.ReplaceAll(p, "\\", "\\\\") + ")" + csvConnection1Input1.FileName
-
+	//p := filepath.FromSlash(csvConnection1.FileDirectory)
+	//fileSearchPattern := "(" + strings.ReplaceAll(p, "\\", "\\\\") + ")" + csvConnection1Input1.FileName
+	fileSearchPattern := `(\\\\10.214.6.148\\Maxymos\\)(Bearing\\)(2021-10-12\\)[a-zA-Z0-9-_]+.csv`
 	fmt.Println(fileSearchPattern)
 
 	re := regexp.MustCompile(fileSearchPattern)
