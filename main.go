@@ -93,6 +93,7 @@ func filteredSearchOfDirectoryTree(re *regexp.Regexp, dir string, limit int) ([]
 		fmt.Println("****************")
 		fmt.Println(re)
 		fmt.Println(fn)
+		fmt.Println(fi)
 		fmt.Println(strings.ReplaceAll(fn, "/", "\\"))
 		if re.MatchString(strings.ReplaceAll(fn, "/", "\\")) == false {
 			return nil
