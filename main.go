@@ -39,11 +39,6 @@ type CsvConnectionInputPart struct {
 
 func main() {
 
-	regexValue := `(\\\\10.214.6.148\\Maxymos\\)(Bearing\\)(2021-10-12\\)[a-zA-Z0-9-_]+.csv`
-	re2 := regexp.MustCompile(regexValue)
-
-	fmt.Println(re2)
-
 	csvConnection1 := CsvConnection{
 		ID:                     "1234",
 		Name:                   "Maxymos",
@@ -57,7 +52,7 @@ func main() {
 	csvConnection1Input1 := CsvConnectionInput{
 		ID:        "123456",
 		Name:      "Bearing",
-		FileName:  `(Bearing\)(2021-10-12\)[a-zA-Z0-9-_]+.csv`,
+		FileName:  `(Bearing\\)(2021-10-12\\)[a-zA-Z0-9\-\_]+.csv`,
 		Delimeter: ";",
 		IndexFile: false,
 		Parts:     []CsvConnectionInputPart{},
@@ -70,12 +65,7 @@ func main() {
 		ReplacementHeaders: "",
 	})
 
-	fmt.Println(csvConnection1.FileDirectory)
-
 	p := filepath.FromSlash(csvConnection1.FileDirectory)
-
-	fmt.Println(p)
-	//fileSearchPattern := "(" + strings.ReplaceAll(p, "\\", "\\\\") + ")" + csvConnection1Input1.FileName
 	fileSearchPattern := "(" + strings.ReplaceAll(p, "\\", "\\\\") + ")" + csvConnection1Input1.FileName
 	re := regexp.MustCompile(fileSearchPattern)
 	fileNames, err := filteredSearchOfDirectoryTree(re, csvConnection1.FileDirectory, 1)
