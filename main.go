@@ -67,6 +67,9 @@ func main() {
 
 	p := filepath.FromSlash(csvConnection1.FileDirectory)
 	fileSearchPattern := "(" + strings.ReplaceAll(p, "\\", "\\\\") + ")" + csvConnection1Input1.FileName
+
+	fmt.Println(fileSearchPattern)
+
 	re := regexp.MustCompile(fileSearchPattern)
 	fileNames, err := filteredSearchOfDirectoryTree(re, csvConnection1.FileDirectory, 1)
 
@@ -86,6 +89,10 @@ func filteredSearchOfDirectoryTree(re *regexp.Regexp, dir string, limit int) ([]
 		if len(files) == limit {
 			return nil
 		}
+
+		fmt.Println("****************")
+		fmt.Println(re)
+		fmt.Println(fn)
 		if re.MatchString(fn) == false {
 			return nil
 		}
