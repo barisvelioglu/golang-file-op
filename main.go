@@ -97,8 +97,10 @@ func filteredSearchOfDirectoryTree(re *regexp.Regexp, dir string, limit int) ([]
 			return nil
 		}
 		if fi.IsDir() {
+			fmt.Println("2222222222222")
 			fmt.Println(fn + string(os.PathSeparator))
 		} else {
+			fmt.Println("-------------")
 			fmt.Println(fn)
 			files = append(files, fn)
 		}
