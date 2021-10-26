@@ -39,6 +39,20 @@ type CsvConnectionInputPart struct {
 
 func main() {
 
+	var files []string
+
+	root := "//10.214.6.148/Maxymos/"
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		files = append(files, path)
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+	for _, file := range files {
+		fmt.Println(file)
+	}
+
 	csvConnection1 := CsvConnection{
 		ID:                     "1234",
 		Name:                   "Maxymos",
@@ -100,8 +114,10 @@ func filteredSearchOfDirectoryTree(re *regexp.Regexp, dir string, limit int) ([]
 		}
 		return nil
 	}
+
 	fmt.Println("--------------")
 	fmt.Println(dir)
+
 	filepath.Walk(dir, walk)
 	fmt.Printf("Found %[1]d files.\n", len(files))
 	return files, nil
