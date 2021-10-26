@@ -41,7 +41,7 @@ func main() {
 
 	var files []string
 
-	root := `\\10.214.6.148\Maxymos\`
+	root := `//10.214.6.148/Maxymos/`
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		files = append(files, path)
 		return nil
